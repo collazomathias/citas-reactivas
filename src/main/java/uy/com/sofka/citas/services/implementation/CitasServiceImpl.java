@@ -1,7 +1,5 @@
 package uy.com.sofka.citas.services.implementation;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,9 +67,9 @@ public class CitasServiceImpl implements CitasService {
     }
 
     @Override
-    public Flux<CitasModel> getByDateTime(LocalDate fecha, LocalTime hora) {
+    public Flux<CitasModel> getByDateTime(String fecha, String hora) {
         return this.citasRepository.findByFechaReservaCita(fecha)
-                .filter(cita -> cita.getHoraReservaCita().equals(hora.toString()))
+                .filter(cita -> cita.getHoraReservaCita().equals(hora))
                 .switchIfEmpty(Flux.empty());
     }
 

@@ -1,7 +1,5 @@
 package uy.com.sofka.citas.services;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import reactor.core.publisher.Flux;
@@ -25,7 +23,7 @@ public interface CitasService {
 
     Mono<CitasModel> updateStatusById(String id);
 
-    Flux<CitasModel> getByDateTime(LocalDate fecha, LocalTime hora);
+    Flux<CitasModel> getByDateTime(String fecha, String hora);
 
     Mono<CitasModel> getDoctorById(String id);
 

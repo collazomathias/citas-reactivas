@@ -1,6 +1,5 @@
 package uy.com.sofka.citas.models;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +22,7 @@ public class CitasModel {
 
     private String apellidosMedico;
 
-    private LocalDate fechaReservaCita;
+    private String fechaReservaCita;
 
     private String horaReservaCita;
 
@@ -33,8 +32,19 @@ public class CitasModel {
 
     public CitasModel(){}
 
-    public CitasModel(String id, String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, LocalDate fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
+    public CitasModel(String id, String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, String fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
         this.id = id;
+        this.idPaciente = idPaciente;
+        this.nombrePaciente = nombrePaciente;
+        this.apellidosPaciente = apellidoPaciente;
+        this.nombreMedico = nombreMedico;
+        this.apellidosMedico = apellidoMedico;
+        this.fechaReservaCita = fechaReservaCita;
+        this.horaReservaCita = horaReservaCita;
+        this.estadoReservaCita = estadoReservaCita;
+    }
+
+    public CitasModel(String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, String fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
         this.idPaciente = idPaciente;
         this.nombrePaciente = nombrePaciente;
         this.apellidosPaciente = apellidoPaciente;
@@ -93,11 +103,11 @@ public class CitasModel {
         this.apellidosMedico = apellidosMedico;
     }
 
-    public LocalDate getFechaReservaCita() {
+    public String getFechaReservaCita() {
         return fechaReservaCita;
     }
 
-    public void setFechaReservaCita(LocalDate fechaReservaCita) {
+    public void setFechaReservaCita(String fechaReservaCita) {
         this.fechaReservaCita = fechaReservaCita;
     }
 

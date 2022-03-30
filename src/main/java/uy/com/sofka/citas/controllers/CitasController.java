@@ -1,7 +1,5 @@
 package uy.com.sofka.citas.controllers;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +71,7 @@ public class CitasController {
 
     @GetMapping("/DateTime/{fecha}/{hora}")
     public Flux<CitasModel> getByDateTime(@PathVariable("fecha") String fecha, @PathVariable("hora") String hora) {
-        return this.citasService.getByDateTime(LocalDate.parse(fecha), LocalTime.parse(hora));
+        return this.citasService.getByDateTime(fecha, hora);
     }
 
     @GetMapping("/getDoctorById/{id}")
