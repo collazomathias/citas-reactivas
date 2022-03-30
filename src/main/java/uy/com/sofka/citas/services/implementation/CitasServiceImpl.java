@@ -2,6 +2,7 @@ package uy.com.sofka.citas.services.implementation;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import uy.com.sofka.citas.models.CitasModel;
+import uy.com.sofka.citas.models.PadecimientosModel;
 import uy.com.sofka.citas.repositories.CitasRepository;
 import uy.com.sofka.citas.services.CitasService;
 
@@ -71,6 +73,26 @@ public class CitasServiceImpl implements CitasService {
         return this.citasRepository.findByFechaReservaCita(fecha)
                 .filter(cita -> cita.getHoraReservaCita().equals(hora.toString()))
                 .switchIfEmpty(Flux.empty());
+    }
+
+    @Override
+    public Mono<CitasModel> getDoctorById(String id) {
+        return this.citasRepository.findById(id)
+                .flatMap(citasModel1 -> {
+                      CitasModel newCitasModel = new CitasModel();
+                      newCitasModel.setNombreMedico(citasModel1.getNombreMedico());
+                      newCitasModel.setApellidosMedico(citasModel1.getApellidosMedico());
+                      return Mono.just(newCitasModel);
+                  }
+                )
+                .switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Mono<List<PadecimientosModel>> getPadecimientoById(String id) {
+        return this.citasRepository.findById(id)
+                .flatMap(cita -> Mono.just(cita.getPadecimientos()))
+                .switchIfEmpty(Mono.empty());
     }
 
 }

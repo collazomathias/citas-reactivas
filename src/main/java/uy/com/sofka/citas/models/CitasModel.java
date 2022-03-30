@@ -31,6 +31,8 @@ public class CitasModel {
 
     private List<PadecimientosModel> padecimientos;
 
+    public CitasModel(){}
+
     public CitasModel(String id, String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, LocalDate fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
         this.id = id;
         this.idPaciente = idPaciente;

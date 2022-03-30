@@ -2,6 +2,7 @@ package uy.com.sofka.citas.controllers;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import uy.com.sofka.citas.models.CitasModel;
+import uy.com.sofka.citas.models.PadecimientosModel;
 import uy.com.sofka.citas.services.CitasService;
 
 @Api
@@ -72,6 +74,16 @@ public class CitasController {
     @GetMapping("/DateTime/{fecha}/{hora}")
     public Flux<CitasModel> getByDateTime(@PathVariable("fecha") String fecha, @PathVariable("hora") String hora) {
         return this.citasService.getByDateTime(LocalDate.parse(fecha), LocalTime.parse(hora));
+    }
+
+    @GetMapping("/getDoctorById/{id}")
+    public Mono<CitasModel> getDoctorById(@PathVariable("id") String id) {
+        return this.citasService.getDoctorById(id);
+    }
+
+    @GetMapping("/getPadecimientoById/{id}")
+    public Mono<List<PadecimientosModel>> getPadecimientoById(@PathVariable("id") String id) {
+        return this.citasService.getPadecimientoById(id);
     }
 
 }
