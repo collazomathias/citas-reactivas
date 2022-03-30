@@ -1,13 +1,13 @@
-package uy.com.sofka.citas.models;
-
-import java.util.List;
-import java.util.UUID;
+package com.springBajo8.springBajo8.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+import java.util.UUID;
+
 @Document(collection = "citas")
-public class CitasModel {
+public class CitasReactivasModel {
 
     @Id
     private String id = UUID.randomUUID().toString().substring(0, 10);
@@ -30,9 +30,9 @@ public class CitasModel {
 
     private List<PadecimientosModel> padecimientos;
 
-    public CitasModel(){}
+    public CitasReactivasModel(){}
 
-    public CitasModel(String id, String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, String fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
+    public CitasReactivasModel(String id, String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, String fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
         this.id = id;
         this.idPaciente = idPaciente;
         this.nombrePaciente = nombrePaciente;
@@ -44,7 +44,7 @@ public class CitasModel {
         this.estadoReservaCita = estadoReservaCita;
     }
 
-    public CitasModel(String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, String fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
+    public CitasReactivasModel(String idPaciente, String nombrePaciente, String apellidoPaciente, String nombreMedico, String apellidoMedico, String fechaReservaCita, String horaReservaCita, String estadoReservaCita, List<PadecimientosModel> padecimientos) {
         this.idPaciente = idPaciente;
         this.nombrePaciente = nombrePaciente;
         this.apellidosPaciente = apellidoPaciente;
@@ -134,5 +134,6 @@ public class CitasModel {
     public void setPadecimientos(List<PadecimientosModel> padecimientos) {
         this.padecimientos = padecimientos;
     }
-    
+
+
 }

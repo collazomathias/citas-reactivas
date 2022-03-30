@@ -1,4 +1,4 @@
-package uy.com.sofka.citas.models;
+package com.springBajo8.springBajo8.models;
 
 public class PadecimientosModel {
     
@@ -27,5 +27,5 @@ public class PadecimientosModel {
     public void setTratamiento(String tratamiento) {
         this.tratamiento = tratamiento;
     }
-
+    
 }
