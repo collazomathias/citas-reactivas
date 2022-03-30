@@ -1,5 +1,8 @@
 package uy.com.sofka.citas.services.implementation;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,4 +55,22 @@ public class CitasServiceImpl implements CitasService {
     public Mono<CitasModel> findById(String id) {
         return this.citasRepository.findById(id);
     }
+
+    @Override
+    public Mono<CitasModel> updateStatusById(String id) {
+        return this.citasRepository.findById(id)
+                .flatMap(citasModel1 -> {
+                    citasModel1.setEstadoReservaCita("Cita cancelada");
+                    return save(citasModel1);
+                })
+                .switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Flux<CitasModel> getByDateTime(LocalDate fecha, LocalTime hora) {
+        return this.citasRepository.findByFechaReservaCita(fecha)
+                .filter(cita -> cita.getHoraReservaCita().equals(hora.toString()))
+                .switchIfEmpty(Flux.empty());
+    }
+
 }

@@ -1,6 +1,10 @@
 package uy.com.sofka.citas.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -18,7 +24,9 @@ import reactor.core.publisher.Mono;
 import uy.com.sofka.citas.models.CitasModel;
 import uy.com.sofka.citas.services.CitasService;
 
+@Api
 @RestController
+@CrossOrigin(origins = "*")
 public class CitasController {
     
     @Autowired
@@ -54,6 +62,16 @@ public class CitasController {
     @GetMapping(value = "/citasReactivas")
     private Flux<CitasModel> findAll() {
         return this.citasService.findAll();
+    }
+
+    @PutMapping("/updateStatus/{id}")
+    public Mono<CitasModel> updateStatusById(@PathVariable("id") String id) {
+        return this.citasService.updateStatusById(id);
+    }
+
+    @GetMapping("/DateTime/{fecha}/{hora}")
+    public Flux<CitasModel> getByDateTime(@PathVariable("fecha") String fecha, @PathVariable("hora") String hora) {
+        return this.citasService.getByDateTime(LocalDate.parse(fecha), LocalTime.parse(hora));
     }
 
 }
